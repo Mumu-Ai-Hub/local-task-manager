@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f8f6">
+  <title>任务管理</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <h1 id="currentTitle">2026年5月</h1>
+      <div class="toolbar" aria-label="日历控制">
+        <button class="icon-button" id="installApp" title="安装到桌面" type="button">⇩</button>
+        <select id="viewMode" title="视图">
+          <option value="week">周</option>
+          <option value="month">月</option>
+        </select>
+        <button class="icon-button" id="prevRange" title="上一段" type="button">‹</button>
+        <button class="text-button" id="todayButton" type="button">今天</button>
+        <button class="icon-button" id="nextRange" title="下一段" type="button">›</button>
+      </div>
+    </header>
+
+    <main class="planner">
+      <section class="todo-panel" aria-label="待办任务">
+        <div class="section-title">To-dos</div>
+        <form class="quick-add" id="quickAddForm">
+          <input id="taskTitle" type="text" autocomplete="off" placeholder="添加任务">
+          <div class="compact-row">
+            <input id="taskDate" type="date" title="日期">
+            <input id="taskTime" type="time" title="时间">
+          </div>
+          <div class="compact-row">
+            <select id="taskColor" title="颜色">
+              <option value="blue">蓝</option>
+              <option value="gray">灰</option>
+              <option value="green">绿</option>
+              <option value="amber">橙</option>
+              <option value="pink">粉</option>
+            </select>
+            <select id="taskPriority" title="优先级">
+              <option value="normal">普通</option>
+              <option value="high">重要</option>
+              <option value="low">低</option>
+            </select>
+          </div>
+          <label class="check-line">
+            <input id="taskReminder" type="checkbox" checked>
+            <span>到点提醒</span>
+          </label>
+          <button class="primary-button" type="submit">添加</button>
+        </form>
+        <div class="list-heading">
+          <span id="todoWeekLabel">本周</span>
+          <button class="link-button" id="clearDone" type="button">清理已完成</button>
+        </div>
+        <div id="todoList" class="todo-list"></div>
+      </section>
+
+      <section class="calendar-wrap" aria-label="日历">
+        <div id="calendarHeader" class="calendar-header"></div>
+        <div id="calendarGrid" class="calendar-grid"></div>
+      </section>
+
+      <aside class="goals-panel" aria-label="任务目标">
+        <div class="section-title">任务目标</div>
+        <div class="goal-tabs" role="tablist">
+          <button class="tab active" data-goal-tab="month" type="button">本月</button>
+          <button class="tab" data-goal-tab="year" type="button">本年</button>
+        </div>
+        <textarea id="monthGoals" spellcheck="false" placeholder="输入本月目标，一行一个"></textarea>
+        <textarea id="yearGoals" class="hidden" spellcheck="false" placeholder="输入本年目标，一行一个"></textarea>
+        <div class="side-actions">
+          <button class="text-button" id="requestNotification" type="button">开启提醒</button>
+          <button class="text-button" id="exportData" type="button">导出</button>
+          <label class="text-button file-button">
+            导入
+            <input id="importData" type="file" accept="application/json">
+          </label>
+        </div>
+        <div class="reminder-status" id="reminderStatus"></div>
+      </aside>
+    </main>
+  </div>
+
+  <dialog id="taskDialog">
+    <form method="dialog" class="task-form" id="taskEditForm">
+      <h2 id="dialogTitle">编辑任务</h2>
+      <input type="hidden" id="editTaskId">
+      <label>
+        <span>标题</span>
+        <input id="editTitle" type="text" required>
+      </label>
+      <div class="form-grid">
+        <label>
+          <span>日期</span>
+          <input id="editDate" type="date">
+        </label>
+        <label>
+          <span>时间</span>
+          <input id="editTime" type="time">
+        </label>
+      </div>
+      <label>
+        <span>备注</span>
+        <textarea id="editNotes" rows="4"></textarea>
+      </label>
+      <div class="form-grid">
+        <label>
+          <span>颜色</span>
+          <select id="editColor">
+            <option value="blue">蓝</option>
+            <option value="gray">灰</option>
+            <option value="green">绿</option>
+            <option value="amber">橙</option>
+            <option value="pink">粉</option>
+          </select>
+        </label>
+        <label>
+          <span>优先级</span>
+          <select id="editPriority">
+            <option value="normal">普通</option>
+            <option value="high">重要</option>
+            <option value="low">低</option>
+          </select>
+        </label>
+      </div>
+      <label class="check-line">
+        <input id="editReminder" type="checkbox">
+        <span>到点提醒</span>
+      </label>
+      <menu class="dialog-actions">
+        <button class="danger-button" id="deleteTask" type="button">删除</button>
+        <span></span>
+        <button class="text-button" value="cancel" type="submit">取消</button>
+        <button class="primary-button" id="saveTask" value="default" type="submit">保存</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <div id="toastArea" class="toast-area" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

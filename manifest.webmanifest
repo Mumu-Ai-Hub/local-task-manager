@@ -1,0 +1,16 @@
+{
+  "name": "任务管理",
+  "short_name": "任务管理",
+  "description": "本地任务管理、目标和提醒应用",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f7f4",
+  "theme_color": "#f8f8f6",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

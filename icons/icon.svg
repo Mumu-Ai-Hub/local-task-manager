@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="任务管理">
+  <rect width="256" height="256" rx="48" fill="#f7f7f4"/>
+  <rect x="42" y="48" width="172" height="160" rx="14" fill="#ffffff" stroke="#353532" stroke-width="10"/>
+  <path d="M76 88h104M76 128h104M76 168h66" stroke="#353532" stroke-width="14" stroke-linecap="round"/>
+  <path d="M54 87l10 10 20-24M54 127l10 10 20-24M54 167l10 10 20-24" fill="none" stroke="#6f82d9" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
